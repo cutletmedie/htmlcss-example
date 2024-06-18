@@ -1,0 +1,128 @@
+.checklist {
+    --task-done-count: 0;
+    --tasks-count: 7;
+    --main-background: #3579F5;
+    --main-text-color: #FFF;
+    --button-background: #F4F8FF;
+    --button-text-color: #4777ED;
+    --badge-background: #2364DB;
+
+    font-family: "Inter", sans-serif;
+    width: 743px;
+    height: 91px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 16px;
+    padding: 0 18px 0 22px;
+    box-sizing: border-box;
+    align-items: center;
+    border-radius: 10px;
+    background-color: var(--main-background);
+}
+
+.checklist__progress {
+    --size: 60px;
+    --half-size: calc(var(--size) / 2);
+    --inner-stroke-width: 1px;
+    --outter-stroke-width: 2px;
+    --inner-radius: calc((var(--size) - 1px - var(--inner-stroke-width)) / 2);
+    --outter-radius: calc((var(--size) - var(--outter-stroke-width)) / 2);
+    --circumference: calc(var(--outter-radius) * pi * 2);
+    --dash: calc((var(--task-done-count) * var(--circumference)) / var(--tasks-count));
+    animation: progress-animation 5s linear 0s 1 forwards;
+
+    position: relative;
+}
+
+.progress__circle circle {
+    cx: var(--half-size);
+    cy: var(--half-size);
+    stroke: white;
+    fill: none;
+    stroke-linecap: round;
+}
+
+.circle__background {
+    r: var(--inner-radius);
+    stroke-width: var(--inner-stroke-width);
+    opacity: .5;
+}
+
+.circle__foreground {
+    r: var(--outter-radius);
+    stroke-width: var(--outter-stroke-width);
+    transform: rotate(-90deg);
+    transform-origin: var(--half-size) var(--half-size);
+    stroke-dasharray: var(--dash) calc(var(--circumference) - var(--dash));
+    transition: stroke-dasharray 0.3s linear 0s;
+    stroke: #5394fd;
+}
+
+.task-done-count::after {
+    counter-reset: task-done var(--task-done-count);
+    content: counter(task-done);
+}
+
+.tasks-count::after {
+    counter-reset: tasks var(--tasks-count);
+    content: counter(tasks);
+}
+
+.progress__text {
+    font-size: 20px;
+    color: var(--main-text-color);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.checklist__text-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: relative;
+    top: -2px;
+}
+
+.text-content__badge {
+    font-size: 12px;
+    color: var(--main-text-color);
+    background-color: var(--badge-background);
+    width: 76px;
+    border-radius: 40px;
+    text-align: center;
+    padding: 0 10px;
+    box-sizing: border-box;
+    line-height: 18px;
+    margin-bottom: 4px;
+}
+
+.text-content__tasks-done {
+    color: var(--main-text-color);
+    margin: 0 0 4px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+.text-content__next-task {
+    color: var(--main-text-color);
+    margin: 0;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.checklist__open-button {
+    font-family: "Inter", sans-serif;
+    width: 170px;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--button-text-color);
+    background-color: var(--button-background);
+    border: none;
+    border-radius: 6px;
+    padding: 10px 0;
+    text-wrap: nowrap;
+}

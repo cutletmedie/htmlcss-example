@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section class="checklist">
+    <div class="checklist__progress">
+        <svg width="60" height="60" viewBox="0 0 60 60"
+             class="progress__circle">
+            <circle class="circle__background"></circle>
+            <circle class="circle__foreground"></circle>
+        </svg>
+        <span class="progress__text">
+            <span class="task-done-count"></span>/<span class="tasks-count"></span></span>
+    </div>
+    <div class="checklist__text-content">
+        <span class="text-content__badge">Чеклист</span>
+        <p class="text-content__tasks-done">
+            Выполнено:
+            <span class="task-done__holder task-done-count"></span> из <span
+                class="task-done__holder tasks-count"></span>
+            действий
+        </p>
+        <p class="text-content__next-task">
+            Следующее действие:
+            <span class="next-task__holder next-task">Созвониться с клиентом до
+                23.05.24 12:00</span>
+        </p>
+    </div>
+    <button class="checklist__open-button">Открыть чеклист</button>
+</section>
+</body>
+</html>
